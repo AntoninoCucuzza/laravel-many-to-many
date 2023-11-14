@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 
 class ProjectController extends Controller
@@ -31,7 +32,9 @@ class ProjectController extends Controller
     {
         $types = Type::all();
 
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -53,8 +56,8 @@ class ProjectController extends Controller
 
             $val_data['thumb'] = $path;
         }
-        Project::create($val_data);
-
+        $project =  Project::create($val_data);
+        $project->technologies()->attach($request->technologies);
         return to_route('admin.projects.index')->with('message', 'Progetto creato con successo!');
     }
 
@@ -73,7 +76,9 @@ class ProjectController extends Controller
     {
         $types = Type::all();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -101,6 +106,10 @@ class ProjectController extends Controller
         }
 
         $project->update($val_data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($val_data['technologies']);
+        }
 
         return to_route('admin.projects.show', $project)->with('message', 'Progetto aggiornato!');
     }

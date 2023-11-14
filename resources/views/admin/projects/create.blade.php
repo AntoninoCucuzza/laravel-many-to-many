@@ -52,8 +52,8 @@
                 </div>
 
 
-                <div class="mb-3">
-                    <label for="type_id" class="form-label">Categories</label>
+                <div class="col-6 mt-4">
+                    <label for="type_id" class="form-label text-white">Categories</label>
                     <select class="form-select @error('type_id') is-invalid  @enderror" name="type_id" id="type_id">
                         <option selected disabled>Select a category</option>
                         <option value="">Uncategorized</option>
@@ -65,6 +65,34 @@
                         @empty
                         @endforelse
                     </select>
+                </div>
+
+
+                <div class="col-6 mt-4">
+                    <label for="technologies" class="form-label">Technologies</label>
+                    <select multiple class="form-select @error('technologies') is-invalid @enderror" name="technologies[]"
+                        id="technologies">
+
+                        <option disabled>Select technologies</option>
+                        <option value="">No technologies has bes used</option>
+
+                        @forelse($technologies as $technology)
+                            <option value=" {{ $technology->id }} "
+                                {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
+                                {{ $technology->name }}</option>
+
+                        @empty
+                        @endforelse
+                    </select>
+
+                    @if ($errors->get('technologies'))
+                        <label for="technologies" class="form-label">
+                            @foreach ($errors->get('technologies') as $error)
+                                <small class="text-danger">{{ $error }}</small>
+                            @endforeach
+                        </label>
+                    @endif
+
                 </div>
 
                 <div class="col-12 mt-4">
@@ -95,12 +123,14 @@
                     @endif
                 </div>
 
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
 
             </div>
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-danger">Reset</button>
-            </div>
+
+
         </form>
     </div>
 @endsection

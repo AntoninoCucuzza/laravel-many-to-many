@@ -14,9 +14,9 @@ class TechnologySeeder extends Seeder
      */
     public function run(): void
     {
-        $thecnologies = ['HTML', 'CSS', 'BOOTSTRAP 5', 'JS', 'VUE 3', 'VITE', 'PHP', 'LARAVEL 10', 'MYSQL', 'GIT'];
+        $technologies = ['HTML', 'CSS', 'BOOTSTRAP 5', 'JS', 'VUE 3', 'VITE', 'PHP', 'LARAVEL 10', 'MYSQL', 'GIT'];
 
-        foreach ($thecnologies as $tech) {
+        foreach ($technologies as $tech) {
             $new_tech = new Technology();
             $new_tech->name = $tech;
             $new_tech->slug = Str::slug($new_tech->name, '-');

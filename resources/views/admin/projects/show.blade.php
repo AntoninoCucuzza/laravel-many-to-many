@@ -27,13 +27,6 @@
         <h4>online link: <a href="{{ $project->project_link }}">{{ $project->project_link }}</a></h4>
         <h4>github link: <a href="{{ $project->github_link }}">{{ $project->github_link }}</a></h4>
 
-        <h4>Type:
-            @if ($project->type)
-                {{ $project->type->name ? $project->type->name : 'Uncategorized' }}
-            @else
-                Uncategorized
-            @endif
-        </h4>
 
 
         <div class="row mt-4">
@@ -45,6 +38,32 @@
             <div class="col-6">
                 <h1 class="">titolo: {{ $project->title }}</h1>
                 <p class="mt-3">descrizione: {{ $project->description }}</p>
+
+
+                <h4>Type:
+                    @if ($project->type)
+                        <span class="badge bg-dark">
+                            {{ $project->type->name ? $project->type->name : 'Uncategorized' }}
+                        </span>
+                    @else
+                        Uncategorized
+                    @endif
+                </h4>
+
+
+                <div class="d-flex gap-2">
+                    <span>technologies: </span>
+                    <ul class="d-flex gap-1 list-unstyled">
+                        @forelse ($project->technologies as $technology)
+                            <li class="badge bg-dark p-2">
+                                <i class="fas fa-tag fa-xs fa-fw"></i>
+                                {{ $technology->name }}
+                            </li>
+                        @empty
+                            <li class="badge bg-dark">Untagged</li>
+                        @endforelse
+                    </ul>
+                </div>
 
             </div>
 

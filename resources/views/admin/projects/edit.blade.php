@@ -7,7 +7,7 @@
 
         <div class="row mt-5 text-white">
             <div class="col-6">
-                <div>
+                <div class="mb-2">
                     <label for="title" class="form-label">title</label>
                     <input name="title" class=" form-control  @error('title') is-invalid @enderror" type="text"
                         placeholder="new title" value="{{ $project->title }}">
@@ -22,7 +22,7 @@
                     @endif
                 </div>
 
-                <div>
+                <div class="mb-2">
                     <label for="project_link" class="form-label mt-2">project_link</label>
                     <input name="project_link" class="form-control  @error('project_link') is-invalid @enderror"
                         type="text" placeholder="new project_link" value="{{ $project->project_link }}">
@@ -36,7 +36,7 @@
                     @endif
                 </div>
 
-                <div>
+                <div class="mb-2">
                     <label for="github_link" class="form-label mt-2">github_link</label>
                     <input name="github_link" class="form-control  @error('github_link') is-invalid @enderror"
                         type="text" placeholder="new github_link" value="{{ $project->github_link }}">
@@ -50,7 +50,7 @@
                     @endif
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-2">
                     <label for="type_id" class="form-label">Categories</label>
                     <select class="form-select @error('type_id') is-invalid  @enderror" name="type_id" id="type_id">
 
@@ -68,7 +68,36 @@
                     </select>
                 </div>
 
-                <div>
+
+                <div class="mb-2">
+                    <label for="technologies" class="form-label">Technologies</label>
+                    <select multiple class="form-select @error('technologies') is-invalid @enderror" name="technologies[]"
+                        id="technologies">
+
+                        <option disabled>Select technologies</option>
+                        <option value="">No technologies has bes used</option>
+
+                        @forelse($technologies as $technology)
+                            <option value=" {{ $technology->id }} "
+                                {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
+                                {{ $technology->name }}</option>
+
+                        @empty
+                        @endforelse
+
+                    </select>
+
+                    @if ($errors->get('technologies'))
+                        <label for="technologies" class="form-label">
+                            @foreach ($errors->get('technologies') as $error)
+                                <small class="text-danger">{{ $error }}</small>
+                            @endforeach
+                        </label>
+                    @endif
+
+                </div>
+
+                <div class="mb-2">
                     <label for="thumb" class="form-label mt-2">thumb</label>
                     <input name="thumb" class="form-control  @error('thumb') is-invalid @enderror" type="file">
 
@@ -81,7 +110,7 @@
                     @endif
                 </div>
 
-                <div>
+                <div class="mb-2">
                     <label for="description" class="form-label mt-2">description</label>
                     <textarea name="description" class="form-control  @error('description') is-invalid @enderror" id="description"
                         cols="30" rows="10">{{ $project->description }}</textarea>
@@ -105,8 +134,35 @@
 
                 <h2>title: <a href="{{ $project->project_link }}">{{ $project->title }}</a> #{{ $project->id }}</h2>
                 <h3>slug: {{ $project->slug }}</h3>
+
                 <img class="img-fluid" src="{{ $project->thumb }}" alt="">
                 <p>{{ $project->description }}</p>
+
+
+                <div class="d-flex gap-2">
+                    <span>technologies: </span>
+                    <ul class="d-flex gap-1 list-unstyled">
+                        @forelse ($project->technologies as $technology)
+                            <li class="badge bg-dark p-2">
+                                <i class="fas fa-tag fa-xs fa-fw"></i>
+                                {{ $technology->name }}
+                            </li>
+                        @empty
+                            <li class="badge bg-dark">Untagged</li>
+                        @endforelse
+                    </ul>
+                </div>
+
+                <h4>Type:
+                    @if ($project->type)
+                        <span class="badge bg-dark">
+                            {{ $project->type->name ? $project->type->name : 'Uncategorized' }}
+                        </span>
+                    @else
+                        Uncategorized
+                    @endif
+                </h4>
+
             </div>
         </div>
     </form>
