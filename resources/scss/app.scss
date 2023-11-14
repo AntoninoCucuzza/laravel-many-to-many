@@ -25,8 +25,16 @@ a {
 .shadow_drop {
     clip-path: polygon(0 10%, 100% 10%, 100% 90%, 0 90%);
     filter: drop-shadow(0px 0px 14px #545454) drop-shadow(0px 0px 14px #545454) drop-shadow(0px 0px 14px #545454);
+    /* #44d62c */
 }
 
 .bg_custom_card {
     background-color: #232323;
+}
+
+.bg_custom_table {
+    --bs-table-bg: #2323237a;
+    --bs-table-color: #fff;
+    --bs-table-hover-color: #44d62c;
+    --bs-table-hover-bg: #121212;
 }

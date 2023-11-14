@@ -17,14 +17,14 @@
                 </a>
             </div>
 
-            <table class="table table-dark table-hover align-middle ">
+            <table class="table bg_custom_table table-hover align-middle ">
                 <thead class="">
                     <tr class="text-center">
                         <th scope="col">ID</th>
                         <th scope="col">Title</th>
                         <th scope="col">Thumb</th>
-                        <th scope="col">link</th>
-                        <th scope="col">actions</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,7 +33,7 @@
 
                             <td>{{ $project->id }}</td>
 
-                            <td><a href="{{ $project->github_link }}">{{ $project->title }}</a></td>
+                            <td><a class="" href="{{ $project->github_link }}">{{ $project->title }}</a></td>
 
                             <td><img width="150" src="{{ $project->thumb }}" alt=""></td>
 
@@ -54,7 +54,7 @@
                                 </button>
 
 
-                                <div class="modal fade" id="modalId-{{ $project->id }}" tabindex="-1"
+                                <div class="modal fade text-white" id="modalId-{{ $project->id }}" tabindex="-1"
                                     data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                                     aria-labelledby="modalTitle-{{ $project->id }}" aria-hidden="true">
 
@@ -90,6 +90,9 @@
                                             </div>
 
                                         </div>
+                                    </div>
+                                </div>
+
                             </td>
 
                         </tr>

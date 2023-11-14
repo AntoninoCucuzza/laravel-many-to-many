@@ -20,6 +20,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::orderByDesc('id')->get();
+
         $trashedProjects = Project::onlyTrashed()->get();
 
         return view('admin.projects.index', compact('projects', 'trashedProjects'));

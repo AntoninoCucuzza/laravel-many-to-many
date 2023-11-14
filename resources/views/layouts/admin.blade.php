@@ -98,7 +98,13 @@
 
                                 <a class=" nav-link text-white {{ Route::currentRouteName() == 'admin.trashed' ? 'bg-darker shadow_drop' : '' }}"
                                     href="{{ route('admin.trashed') }}">
-                                    <i class="fa-solid fa-trash-can"></i> trashed
+                                    <i class="fa-solid fa-trash-can"></i> Trashed
+                                </a>
+
+
+                                <a class=" nav-link text-white {{ Route::currentRouteName() == 'admin.type.index' ? 'bg-darker shadow_drop' : '' }}"
+                                    href="{{ route('admin.types.index') }}">
+                                    <i class="fa-solid fa-list"></i> Type
                                 </a>
                             </li>
 

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -17,14 +16,16 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::orderByDesc('id')->get();
+
+        return view('admin.types.index', compact('types'));
     }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('admin.types.create',);
     }
     /**
      * Store a newly created resource in storage.
@@ -45,7 +46,7 @@ class TypeController extends Controller
      */
     public function edit(Type $Type)
     {
-        //
+        return view('admin.types.edit', compact('Type'));
     }
     /**
      * Update the specified resource in storage.
@@ -59,6 +60,5 @@ class TypeController extends Controller
      */
     public function destroy(Type $Type)
     {
-        //
     }
 }
