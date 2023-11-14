@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
         'projects' => 'project:slug'
     ]);
 
-    Route::get('projects/trashed', [ProjectController::class, 'trashed'])->name('trashed');
+    Route::get('trashed', [ProjectController::class, 'trashed'])->name('trashed');
     Route::patch('projects/{id}/restore', [ProjectController::class, 'restore'])->name('projects.restore');
     Route::delete('projects/{id}/forceDelete', [ProjectController::class, 'forceDelete'])->name('projects.forceDelete');
 });
