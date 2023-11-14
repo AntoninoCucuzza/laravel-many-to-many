@@ -3,13 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Project;
+use App\Models\User;
+use App\Models\Type;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
 
-        return view('admin.dashboard');
+        $total_Projects = Project::count();
+
+        $total_categories = Type::count();
+
+        $total_users = User::count();
+
+        $total_Projects_without_images = Project::whereNull('thumb')->count();
+
+        $total_Projects_with_images = $total_Projects - $total_Projects_without_images;
+
+        return view('admin.dashboard', compact('total_Projects', 'total_Projects_without_images', 'total_Projects_with_images', 'total_users', 'total_categories'));
     }
 }
