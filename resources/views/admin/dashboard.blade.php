@@ -84,7 +84,7 @@
 
                     </div>
                     <div class="card-footer text-end">
-                        <a href="{{ route('admin.types.index') }}" class="btn text-white">Go
+                        <a href="{{ route('admin.technologies.index') }}" class="btn text-white">Go
                             <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
                         </a>
                     </div>
