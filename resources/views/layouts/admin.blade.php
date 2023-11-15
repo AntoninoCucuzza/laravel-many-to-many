@@ -107,6 +107,10 @@
                                     <i class="fa-solid fa-list"></i> Type
                                 </a>
 
+                                <a class=" nav-link text-white {{ Route::currentRouteName() == 'admin.technologies.index' ? 'bg-darker shadow_drop' : '' }}"
+                                    href="{{ route('admin.technologies.index') }}">
+                                    <i class="fas fa-tag fa-fw"></i>Technology
+                                </a>
                             </li>
 
                         </ul>

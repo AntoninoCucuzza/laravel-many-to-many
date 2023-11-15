@@ -62,7 +62,25 @@
                         <h4 class="text-uppercase">
                             <i class="fa-solid fa-list"></i> Type
                         </h4>
-                        <strong class="fs-2">{{ $total_categories }}</strong>
+                        <strong class="fs-2">{{ $total_Types }}</strong>
+
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="{{ route('admin.types.index') }}" class="btn text-white">Go
+                            <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+                <div class="card bg_custom_card text-white">
+                    <div class="card-body">
+                        <h4 class="text-uppercase">
+                            <i class="fas fa-tag fa-fw"></i> Technologies
+                        </h4>
+                        <strong class="fs-2">{{ $total_Technologies }}</strong>
 
                     </div>
                     <div class="card-footer text-end">
