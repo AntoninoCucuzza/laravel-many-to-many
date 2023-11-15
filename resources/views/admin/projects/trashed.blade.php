@@ -2,8 +2,8 @@
 
 @section('content')
     <h1 class="text-center text-white"> soft-deleted</h1>
-    <table class="table table-light table-hover align-middle">
-        <thead class="table-dark">
+    <table class="table bg_custom_table table-hover align-middle">
+        <thead>
             <tr class="text-center">
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             @forelse ($trashedProjects as $trashedProject)
-                <tr class="text-center table-dark">
+                <tr class="text-center">
 
                     <td>{{ $trashedProject->id }}</td>
 
@@ -45,7 +45,7 @@
 
                 </tr>
             @empty
-                <tr class="text-center table-dark">
+                <tr class="text-center ">
                     <td colspan="5">
                         <h1>no projects soft-deleted</h1>
                     </td>

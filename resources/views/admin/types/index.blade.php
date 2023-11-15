@@ -55,7 +55,7 @@
                                         </div>
 
                                         <div class="modal-body bg-dark">
-                                            sei sicuro di voler eliminare questo projetto?
+                                            sei sicuro di voler eliminare questo type?
                                         </div>
 
                                         <div class="modal-footer bg-dark">

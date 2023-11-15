@@ -102,10 +102,11 @@
                                 </a>
 
 
-                                <a class=" nav-link text-white {{ Route::currentRouteName() == 'admin.type.index' ? 'bg-darker shadow_drop' : '' }}"
+                                <a class=" nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-darker shadow_drop' : '' }}"
                                     href="{{ route('admin.types.index') }}">
                                     <i class="fa-solid fa-list"></i> Type
                                 </a>
+
                             </li>
 
                         </ul>
