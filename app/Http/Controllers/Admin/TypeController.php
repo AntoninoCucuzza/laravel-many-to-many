@@ -11,12 +11,13 @@ use Illuminate\Support\Str;
 
 class TypeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $types = Type::orderByDesc('id')->get();
+        $types = Type::orderByDesc('id')->paginate(10);
 
         return view('admin.types.index', compact('types'));
     }
@@ -30,9 +31,14 @@ class TypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTypeRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        $val_data['slug'] = Str::slug($request->name, '-');
+
+        $Type = Type::create($val_data);
+
+        return to_route('admin.types.index')->with('message', 'type creato con successo!');
     }
     /**
      * Display the specified resource.
@@ -51,9 +57,15 @@ class TypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Type $Type)
+    public function update(UpdateTypeRequest $request, Type $Type)
     {
-        //
+        $val_data = $request->validated();
+
+        $val_data['slug'] = Str::slug($request->name, '-');
+
+        $Type->update($val_data);
+
+        return to_route('admin.types.index', $Type)->with('message', 'type aggiornato!');
     }
     /**
      * Remove the specified resource from storage.

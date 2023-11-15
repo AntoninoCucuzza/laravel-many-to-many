@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTypeRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::id() === 1;
     }
 
     /**
@@ -22,7 +23,7 @@ class StoreTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'min:5', 'max:50'],
         ];
     }
 }

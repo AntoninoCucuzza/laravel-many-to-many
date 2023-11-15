@@ -19,7 +19,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderByDesc('id')->get();
+        $projects = Project::orderByDesc('id')->paginate(10);
 
         $trashedProjects = Project::onlyTrashed()->get();
 

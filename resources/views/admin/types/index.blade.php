@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container text-white mt-4">
+    <div class=" text-white mt-4">
         <div class="d-flex justify-content-between my-4">
             <h1>type</h1>
             <a class="btn m-2 btn-dark" href="{{ route('admin.types.create') }}">
@@ -84,5 +84,6 @@
                 @endforelse
             </tbody>
         </table>
+        {!! $types->withQueryString()->links('pagination::bootstrap-5') !!}
     </div>
 @endsection
