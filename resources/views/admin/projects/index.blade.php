@@ -2,18 +2,15 @@
 
 
     @section('content')
-        @if (session('message'))
-            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                <strong>Success!</strong> {{ session('message') }}
-            </div>
-        @endif
+        @include('partials.message')
 
         <div class="table-responsive-sm mt-5">
+
+
             <div class="d-flex justify-content-between my-4">
-                <h1 class="text-center text-white">projects table</h1>
-                <a class="btn m-2 btn-dark" href="{{ route('admin.projects.create') }}">
-                    <i class="fa-solid fa-pencil" style="color: #ffffff;"></i> new project
+                <h1 class="text-center text-white">Projects table</h1>
+                <a class="btn m-2 btn_custom_create" href="{{ route('admin.projects.create') }}">
+                    <i class="fa-solid fa-pencil" style="color: #ffffff;"></i> New project
                 </a>
             </div>
 
@@ -71,7 +68,7 @@
                                             </div>
 
                                             <div class="modal-body bg-dark">
-                                                sei sicuro di voler eliminare questo projetto?
+                                                Sei sicuro di voler eliminare questo projetto?
                                             </div>
 
                                             <div class="modal-footer bg-dark">
@@ -98,7 +95,7 @@
                         </tr>
                     @empty
                         <tr class="text-center table-dark">
-                            <td colspan="5"> no projects </td>
+                            <td colspan="5"> No projects </td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -3,12 +3,8 @@
 @section('content')
     <div class="container text-white">
         <h1 class="fw-bold text-center mt-3">Project Number: # {{ $project->id }}</h1>
-        @if (session('message'))
-            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                <strong>Success!</strong> {{ session('message') }}
-            </div>
-        @endif
+        @include('partials.message')
+
 
         <div class="d-flex align-items-center justify-content-between">
             <h4>slug: {{ $project->slug }}</h4>
@@ -17,15 +13,51 @@
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
 
-                <a class="btn btn-danger btn-lg me-2 border-dark" href="{{ route('admin.projects.edit', $project->slug) }}">
+                <button type="button" class="btn btn-danger  btn-lg me-2 border-dark" data-bs-toggle="modal"
+                    data-bs-target="#modalId-{{ $project->id }}">
                     <i class="fa-solid fa-trash-can" style="color: #000000;"></i>
-                </a>
+                </button>
 
+                <div class="modal fade text-white" id="modalId-{{ $project->id }}" tabindex="-1" data-bs-backdrop="static"
+                    data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitle-{{ $project->id }}"
+                    aria-hidden="true">
+
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header bg-dark">
+                                <h5 class="modal-title" id="modalTitle-{{ $project->id }}">Modal id:
+                                    {{ $project->id }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body bg-dark">
+                                Sei sicuro di voler eliminare questo projetto?
+                            </div>
+
+                            <div class="modal-footer bg-dark">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+
+                                <form class=" d-inline-block bg-dark"
+                                    action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <h4>online link: <a href="{{ $project->project_link }}">{{ $project->project_link }}</a></h4>
-        <h4>github link: <a href="{{ $project->github_link }}">{{ $project->github_link }}</a></h4>
+        <h4>Online link: <a href="{{ $project->project_link }}">{{ $project->project_link }}</a></h4>
+        <h4>Github link: <a href="{{ $project->github_link }}">{{ $project->github_link }}</a></h4>
 
 
 
@@ -36,8 +68,8 @@
             </div>
 
             <div class="col-6">
-                <h1 class="">titolo: {{ $project->title }}</h1>
-                <p class="mt-3">descrizione: {{ $project->description }}</p>
+                <h1 class="">Titolo: {{ $project->title }}</h1>
+                <p class="mt-3">Descrizione: {{ $project->description }}</p>
 
 
                 <h4>Type:
@@ -50,9 +82,8 @@
                     @endif
                 </h4>
 
-
                 <div class="d-flex gap-2">
-                    <span>technologies: </span>
+                    <span>Technologies: </span>
                     <ul class="d-flex gap-1 list-unstyled">
                         @forelse ($project->technologies as $technology)
                             <li class="badge bg-dark p-2">

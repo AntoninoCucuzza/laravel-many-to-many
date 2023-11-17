@@ -142,15 +142,23 @@ class ProjectController extends Controller
         $restoredProject = Project::withTrashed()->find($id);
         $restoredProject->restore();
 
-        return redirect()->route('admin.projects.index')->with('message', 'Progetto ripristinato!');
+        /*      if ($restoredProject->count() == 0) {
+            return redirect()->route('admin.projects.index')->with('message', 'Progetto ripristinato!');
+        } */
+        return redirect()->route('admin.trashed')->with('message', 'Progetto ripristinato!');
     }
 
 
     public function forceDelete($id)
     {
-        $project = Project::withTrashed()->find($id);
+        $project = Project::onlyTrashed()->find($id);
+
+        if ($project->technologies) {
+            $project->technologies()->detach();
+        }
+
         $project->forceDelete();
 
-        return redirect()->route('admin.projects.index')->with('message', 'Progetto eliminato definitivamente!');
+        return redirect()->route('admin.trashed')->with('message', 'Progetto eliminato definitivamente!');
     }
 }

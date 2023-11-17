@@ -1,15 +1,17 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="text-center text-white"> soft-deleted</h1>
+    @include('partials.message')
+
+    <h1 class="text-center text-white"> Soft-deleted</h1>
     <table class="table bg_custom_table table-hover align-middle">
         <thead>
             <tr class="text-center">
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
                 <th scope="col">Thumb</th>
-                <th scope="col">link</th>
-                <th scope="col">actions</th>
+                <th scope="col">Link</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +49,7 @@
             @empty
                 <tr class="text-center ">
                     <td colspan="5">
-                        <h1>no projects soft-deleted</h1>
+                        <h1>No projects soft-deleted</h1>
                     </td>
                 </tr>
             @endforelse

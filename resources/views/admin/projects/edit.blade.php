@@ -8,7 +8,7 @@
         <div class="row mt-5 text-white">
             <div class="col-6">
                 <div class="mb-2">
-                    <label for="title" class="form-label">title</label>
+                    <label for="title" class="form-label">Title</label>
                     <input name="title" class=" form-control  @error('title') is-invalid @enderror" type="text"
                         placeholder="new title" value="{{ $project->title }}">
 
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="project_link" class="form-label mt-2">project_link</label>
+                    <label for="project_link" class="form-label mt-2">Project_link</label>
                     <input name="project_link" class="form-control  @error('project_link') is-invalid @enderror"
                         type="text" placeholder="new project_link" value="{{ $project->project_link }}">
 
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="github_link" class="form-label mt-2">github_link</label>
+                    <label for="github_link" class="form-label mt-2">Github_link</label>
                     <input name="github_link" class="form-control  @error('github_link') is-invalid @enderror"
                         type="text" placeholder="new github_link" value="{{ $project->github_link }}">
 
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="type_id" class="form-label">Categories</label>
+                    <label for="type_id" class="form-label">Types</label>
                     <select class="form-select @error('type_id') is-invalid  @enderror" name="type_id" id="type_id">
 
                         <option selected disabled>Select a category</option>
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="thumb" class="form-label mt-2">thumb</label>
+                    <label for="thumb" class="form-label mt-2">Thumb</label>
                     <input name="thumb" class="form-control  @error('thumb') is-invalid @enderror" type="file">
 
                     @if ($errors->get('thumb'))
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label for="description" class="form-label mt-2">description</label>
+                    <label for="description" class="form-label mt-2">Description</label>
                     <textarea name="description" class="form-control  @error('description') is-invalid @enderror" id="description"
                         cols="30" rows="10">{{ $project->description }}</textarea>
 
@@ -132,15 +132,15 @@
 
             <div class="col-6">
 
-                <h2>title: <a href="{{ $project->project_link }}">{{ $project->title }}</a> #{{ $project->id }}</h2>
-                <h3>slug: {{ $project->slug }}</h3>
+                <h2>Title: <a href="{{ $project->project_link }}">{{ $project->title }}</a> #{{ $project->id }}</h2>
+                <h3>Slug: {{ $project->slug }}</h3>
 
                 <img class="img-fluid" src="{{ $project->thumb }}" alt="">
                 <p>{{ $project->description }}</p>
 
 
                 <div class="d-flex gap-2">
-                    <span>technologies: </span>
+                    <span>Technologies: </span>
                     <ul class="d-flex gap-1 list-unstyled">
                         @forelse ($project->technologies as $technology)
                             <li class="badge bg-dark p-2">

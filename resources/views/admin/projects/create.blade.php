@@ -9,7 +9,7 @@
             @csrf
             <div class="mt-3 row">
                 <div class="col-12 mt-4">
-                    <label for="title" class="form-label text-white ">title</label>
+                    <label for="title" class="form-label text-white ">Title</label>
                     <input class="form-control @error('title') is-invalid @enderror" name="title" type="text"
                         placeholder="inserisci il nome del progetto">
 
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="col-6 mt-4">
-                    <label for="project_link" class="form-label text-white ">project_link</label>
+                    <label for="project_link" class="form-label text-white ">Project_link</label>
                     <input class="form-control @error('project_link') is-invalid @enderror" name="project_link"
                         type="text" placeholder="inserisci il link del progetto">
 
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="col-6 mt-4">
-                    <label for="github_link" class="form-label text-white ">github_link</label>
+                    <label for="github_link" class="form-label text-white ">Github_link</label>
                     <input class="form-control @error('github_link') is-invalid @enderror" name="github_link" type="text"
                         placeholder="inserisci il link di github">
 
@@ -68,8 +68,8 @@
                 </div>
 
 
-                <div class="col-6 mt-4">
-                    <label for="technologies" class="form-label">Technologies</label>
+                {{--                 <div class="col-6 mt-4">
+                    <label for="technologies" class="form-label text-white">Technologies</label>
                     <select multiple class="form-select @error('technologies') is-invalid @enderror" name="technologies[]"
                         id="technologies">
 
@@ -79,7 +79,8 @@
                         @forelse($technologies as $technology)
                             <option value=" {{ $technology->id }} "
                                 {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
-                                {{ $technology->name }}</option>
+                                
+                            </option>
 
                         @empty
                         @endforelse
@@ -93,10 +94,47 @@
                         </label>
                     @endif
 
+                </div> --}}
+                <div class="col-6 mt-4">
+                    <div style="height:100px" class="row overflow-y-auto h">
+                        @forelse($technologies as $technology)
+                            @if ($technology->id % 2 == 0)
+                                <div class="col-6">
+                                    <input class="form-check-input @error('technologies') is-invalid @enderror"
+                                        type="checkbox" id="technologies{{ $technology->id }}" name="technologies[]"
+                                        aria-describedby="helpTechnology" value="{{ $technology->id }}"
+                                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                                    <label class="form-check-label text-white"
+                                        for="technologies{{ $technology->id }}">{{ $technology->name }}</label>
+                                </div>
+                            @else
+                                <div class="col-6">
+                                    <input class="form-check-input @error('technologies') is-invalid @enderror"
+                                        type="checkbox" id="technologies{{ $technology->id }}" name="technologies[]"
+                                        aria-describedby="helpTechnology" value="{{ $technology->id }}"
+                                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+
+                                    <label class="form-check-label text-white"
+                                        for="technologies{{ $technology->id }}">{{ $technology->name }}</label>
+                                </div>
+                            @endif
+
+                        @empty
+                            no technologies available
+                        @endforelse
+                    </div>
+
+                    @if ($errors->get('technologies'))
+                        <label for="technologies" class="form-label">
+                            @foreach ($errors->get('technologies') as $error)
+                                <small class="text-danger">{{ $error }}</small>
+                            @endforeach
+                        </label>
+                    @endif
                 </div>
 
                 <div class="col-12 mt-4">
-                    <label for="thumb" class="form-label text-white ">thumb</label>
+                    <label for="thumb" class="form-label text-white ">Thumb</label>
                     <input class="form-control @error('thumb') is-invalid @enderror" name="thumb" type="file">
 
                     @if ($errors->get('thumb'))
@@ -109,7 +147,7 @@
                 </div>
 
                 <div class="col-12 mt-4">
-                    <label for="description" class="form-label text-white ">description</label>
+                    <label for="description" class="form-label text-white ">Description</label>
                     <textarea class="form-control @error('description') is-invalid @enderror" name="description" name="descrizione"
                         id="descrizione" cols="30" rows="10"></textarea>
 

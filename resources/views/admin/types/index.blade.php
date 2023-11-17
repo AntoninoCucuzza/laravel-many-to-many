@@ -1,10 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+    @include('partials.message')
+
     <div class=" text-white mt-4">
         <div class="d-flex justify-content-between my-4">
             <h1>type</h1>
-            <a class="btn m-2 btn-dark" href="{{ route('admin.types.create') }}">
+            <a class="btn m-2 btn_custom_create" href="{{ route('admin.types.create') }}">
                 <i class="fa-solid fa-pencil" style="color: #ffffff;"></i> new type
             </a>
         </div>
